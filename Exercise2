@@ -1,0 +1,158 @@
+Exercises from Chapter 2 - ISLR book by Gareth James • Daniela Witten • Trevor Hastie Robert Tibshirani
+2.4 Exercises
+Conceptual
+
+1. For each of parts (a) through (d), indicate whether we would generally expect the performance of a flexible statistical learning method to be better or worse than an inflexible method. Justify your answer.
+
+(a)  The sample size n is extremely large, and the number of predictors p is small
+
+Ans: As the sample size n is extremely large, flexible method performs better both for the train and the test data thereby lowering the variance. Also as the number of predictors is small the bias of the flexible method will be small.
+
+(b)  The number of predictors p is extremely large, and the number of observations n is small.
+
+Ans:  Here we have high dimensional data (p is extremely large) but the sample size is small. So both flexible and inflexible models will not perform well.  An inflexible model will not be able to represent the data very well and with sample size being small it can lead to large bias. Whereas a flexible model will be able to represent the data very well taking into account the large p. But with the sample size being small the mean square error for the train data is reduced but the mean square error for test data increases due to large variance. Basically it means a flexible model will overfit the train data with a small number of observations.
+
+(c)  The relationship between the predictors and response is highly non-linear.
+
+Ans: Flexible model performs well here.  Flexible model with larger degrees of freedom in comparison with inflexible models like linear regression (2 degrees of freedom) should represent the data better. 
+
+(d)  The variance of the error terms, i.e. σ2 = Var(ε), is extremely high. 
+
+Ans: If the variance of the error terms is large, a flexible model will try to adjust the parameters to fit it the data for these error variations leading to large variance in the test data. At the same time, a inflexible model being linear will try to map the data in a linear way and hence should be able to get smaller variance in test set. Therefore, inflexible model is better in this case.
+
+2. Explain whether each scenario is a classification or regression problem, and indicate whether we are most interested in inference or prediction. Finally, provide n and p. 
+
+(a)  We collect a set of data on the top 500 firms in the US. For each firm we record profit, number of employees, industry and the CEO salary. We are interested in understanding which factors affect CEO salary. 
+
+Ans: Regression prediction problem - Here we are trying to find the inference or the factors influencing the CEO salary by looking at various predictors like profit, number of employees etc... n= 500 and p = profit, number of employees, industry (p=3); response = CEO salary
+
+(b) We are considering launching a new product and wish to know whether it will be a success or a failure. We collect data on 20 similar products that were previously launched. For each product we have recorded whether it was a success or failure, price charged for the product, marketing budget, competition price, and ten other variables. 
+
+Ans: Classification prediction problem as the response is either an yes or no / success or failure. n = 20; p =13
+
+(c) We are interesting in predicting the % change in the US dollar in relation to the weekly changes in the world stock markets. Hence we collect weekly data for all of 2012. For each week we record the % change in the dollar, the % change in the US market, the % change in the British market, and the % change in the German market. 
+
+Ans: Prediction using regression.  n= 52 ( the number of weeks in 2012 with each data / week); p = 3
+
+3. We now visit the bias-variance trade off
+
+(a) Provide a sketch of typical (squared) bias, variance, training error, test error, and Bayes (or irreducible) error curves, on a single plot, as we go from less flexible statistical learning methods towards more flexible approaches. The x-axis should represent the amount of flexibility in the method, and the y-axis should represent the values for each curve. There should be five curves. Make sure to label each one. 
+
+Ans: 
+
+
+ Blue : Squared Bias
+ Brown : Variance
+ Yellow : Train MSE
+ Green : Test MSE
+ Black : Bayes or Irreducible error 
+
+X-axis - increasing flexibility 
+Y-axis - values 
+
+
+
+
+
+
+
+
+(b) Explain why each of the five curves has the shape displayed in part (a). 
+Blue: Squared Bias - If a really complicated problem is built using a simple linear regression kind of model, the model is biased. So when the flexibility of the model increases in the positive x direction we can see that bias reduces.
+Brown: Variance -  Lets consider a highly flexible model which explains all the points in the data including the outliers. Basically the model overfits the train data. So when we use the above overfit model on test set, we find that the test MSE is increased. This happens due to large variance.  As we see in the graph, when the model is less complex and inflexible, the variance is small and it increases monotonically when the flexibility increases.
+Yellow : Train MSE - This is closely related to bias. When the model is simple and inflexible, the bias is large but as the model becomes more and more complex it will try to fit all the data hence reducing the bias thereby reducing the training error. 
+Green: Test MSE - This is closely related to variance and bias trade off. When the model is simple and inflexible, the bias is large and variance is small. But as the model becomes more complex, the bias reduces faster than the variance thereby leading to larger test error. This results in the U shaped curve.
+Black: Bayes or Irreducible error -  This is a horizontal line and it does not change with increasing flexibility. This gives the upper bound for accuracy of any model. 
+
+4. You will now think of some real-life applications for statistical learning. 
+(a) Describe three real-life applications in which classification might be useful. Describe the response, as well as the predictors. Is the goal of each application inference or prediction? Explain your answer. 
+
+1. From a given demographic data predict whether the particular person will vote for democratic or republican government.
+Response : Republican or democratic 
+Predictors - Age, Gender, Ethnicity,  salary, state..etc..
+
+2. From a given hand written numbers, predict the correct number. 
+Response : 0,1,2,3,4,5,6,7,8,9
+Predictors -  various hand written images of all numbers
+
+3. Predict admission into a college for higher education 
+Response : Admitted or Not admitted
+Predictors : GPA, SAT score, ACT score, Extracurricular participation score, Ethnicity, State score, Relevancy of degree to the higher education, Specilizations, Age, Gender, 
+
+(b) Describe three real-life applications in which regression might be useful. Describe the response, as well as the predictors. Is the goal of each application inference or prediction? Explain your answer. 
+
+1. Predict the total sales from previous years sales
+
+Response: Sales next year
+Predictors : Total people visited, New items added, New items sold, Customer happiness index, Customer easy finding index, Average number of items sold / visit, Average time required / visit, Number of sales person / day etc..
+
+2. Predicting the price of wine 
+Response : Price of wine
+Predictors : Winter Rain, Harvest Rain, Age etc..
+
+3. Moneyball prediction on Oakland A's win in baseball game
+
+Response : Number of wins by the particular team
+Predictors :  Previous years wins, run rate, rank, speed, parameters representing players strength, total runs, team score, budget of the team, players salary, games played that year etc..
+
+(c) Describe three real-life applications in which cluster analysis might be useful. 
+
+1. Clustering a group of people into various categories by looking at the spending pattern
+2. Clustering an MRI image with respect to intensity and mapping into the original picture for detection
+3. Clustering genes using the gene expression data for cancer and other deadly disease detection. 
+
+
+5. What are the advantages and disadvantages of a very flexible (versus a less flexible) approach for regression or classification? Under what circumstances might a more flexible approach be preferred to a less flexible approach? When might a less flexible approach be preferred? 
+
+
+1. Flexible approach takes into account all predictors from the data and make an elaborate model without any assumptions and hence will be more close to original function. 
+2. But as the model is too flexible, it can overfit the train data leading to large test error.  In order to avoid overfitting we need to have large number of sample data.
+3. Flexible to less flexible approach can be compared to Epicurean (principle of plentitude or multiple explanations) to Occam's Razor (reductionist or model with fewest and simple assumptions ) approach. 
+
+6. Describe the differences between a parametric and a non-parametric statistical learning approach. What are the advantages of a para- metric approach to regression or classification (as opposed to a non- parametric approach)? What are its disadvantages? 
+
+In Parametric approach we start with an assumption about the functional form (linear or nonlinear / flexible or less flexible) and then fit the data to the functional form. This model based approach is called parametric approach.  Regression is one among such approach. 
+
+Whereas in non-parametric approach, we don't make an assumption on the type of function. Instead we estimate the function which fits closely to the data. Thin plate splines is a non-parametric approach. 
+
+Advantages: 
+(1)Parametric approach can fit any kind of data into a functional form by choosing wide range of functions.
+(2)In Parametric approach we can work well with a  simple model (eg. linear model) for inference whereas in the case of non-parametric approach we need large number of parameters to tell even something about the model.
+
+Disadvantages:
+(1) Parametric approach with lots of parameters overfits the training data leading to large test errors. 
+(2) Parametric models require large train data to train the model else it will have large bias. 
+
+
+7. The table below provides a training data set containing six observations, three predictors, and one qualitative response variable.
+
+                              Obs.   X1   X2   X3   Y
+                             1       0    3       0   Red
+                             2       2    0       0   Red
+                             3       0    1       3   Red
+                             4       0    1       2   Green 
+                             5     −1    0       1   Green 
+                             6       1    1       1   Red
+
+Suppose we wish to use this data set to make a prediction for Y when X1 = X2 = X3 = 0 using K-nearest neighbors.
+
+(a) Compute the Euclidean distance between each observation and the test point,X1 =X2 =X3 =0.
+(b)  What is our prediction with K = 1? Why?
+(c)  What is our prediction with K = 3? Why?
+(d)  If the Bayes decision boundary in this problem is highly non- linear, then would we expect the best value for K to be large or small? Why? 
+
+ANS
+(a) Red: sqrt((0-0)^2 + (0-3)^2 + (0-0)^2 )= sqrt(9) = 3 
+     Red: sqrt((0-2)^2 + (0-0)^2 + (0-0)^2 )= sqrt(4) = 2
+     Red: sqrt((0-0)^2 + (0-1)^2 + (0-3)^2 )= sqrt(10) = 3.162278
+     Green: sqrt((0-0)^2 + (0-1)^2 + (0-2)^2 )= sqrt(5)= 2.236068
+     Green: sqrt((0+1)^2 + (0-0)^2 + (0-1)^2 )= sqrt(2) =1.414214 
+     Red: sqrt((0-1)^2 + (0-1)^2 + (0-1)^2 )= sqrt(3)=1.732051
+(b) K=1
+test set X1=X2=X3=0. This is close to Green which is at a distance sqrt(2). Therefore the prediction is Green
+(c) K= 3
+test set X1= X2=X3=0. Closest ones are Red (Obs 2), Green(Obs 5) and Red(Obs 6)
+Prediction will be Red
+(d) If the Bayes decision boundary is highly non-linear it will be easy to fit in data with few K values. Whereas when the boundary becomes more rigid, we need large K values.
+
+Applied Problems from Chapter 2 solved using R 
